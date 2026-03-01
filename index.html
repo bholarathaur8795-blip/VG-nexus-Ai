@@ -3,56 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VG NEXUS AI | Payment Dashboard</title>
+    <title>VG NEXUS AI | Professional Trading & Payment Hub</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #ffffff; margin: 0; color: #333; text-align: center; }
-        .header { padding: 30px; border-bottom: 2px solid #f0f0f0; background: #fafafa; }
-        h1 { color: #007bff; letter-spacing: 3px; margin: 0; font-size: 32px; }
+        :root { --primary: #0066ff; --secondary: #28a745; --white: #ffffff; --gray: #f4f7f6; }
+        body { font-family: 'Inter', sans-serif; background: var(--white); margin: 0; color: #333; }
         
-        /* बैलेंस सेक्शन */
-        .balance-card { background: #f8f9fa; margin: 20px auto; padding: 20px; width: 80%; border-radius: 15px; border: 1px solid #eee; }
-        .amount { font-size: 40px; font-weight: bold; color: #28a745; }
+        /* प्रोफेशनल हेडर */
+        .navbar { background: var(--white); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 24px; font-weight: 800; color: var(--primary); letter-spacing: 2px; }
+
+        /* मुख्य सेक्शन */
+        .container { max-width: 1200px; margin: 20px auto; padding: 20px; }
         
-        /* आपकी फोटो */
-        .main-img { width: 90%; max-width: 600px; border-radius: 15px; margin: 20px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        /* बैलेंस कार्ड */
+        .dashboard-card { background: var(--gray); border-radius: 20px; padding: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px; border: 1px solid #e0e0e0; }
+        .stat-item h3 { font-size: 14px; color: #666; margin: 0; }
+        .stat-item p { font-size: 28px; font-weight: bold; margin: 10px 0; color: #000; }
+
+        /* आपकी मास्टर इमेज */
+        .hero-image-container { text-align: center; margin-bottom: 40px; }
+        .hero-image { width: 100%; max-width: 800px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+
+        /* असली पेमेंट और काम वाले बटन */
+        .action-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 30px; }
+        .action-btn { padding: 18px; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; transition: 0.3s; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; }
         
-        /* बटन सेक्शन */
-        .btn-container { display: flex; flex-direction: column; gap: 15px; padding: 20px; align-items: center; }
-        .pay-btn { width: 85%; padding: 15px; border-radius: 10px; border: none; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-pay { background: var(--primary); color: white; }
+        .btn-withdraw { background: #333; color: white; }
+        .btn-crypto { background: #f7931a; color: white; }
+        .btn-support { background: var(--secondary); color: white; }
         
-        .btn-paypal { background: #ffc439; color: #003087; }
-        .btn-card { background: #007bff; color: white; }
-        .btn-crypto { background: #333; color: gold; }
-        .btn-gpay { background: #ffffff; border: 1px solid #ccc; color: #5f6368; }
-        
-        .footer { margin-top: 50px; padding: 20px; font-size: 12px; color: #999; }
+        .action-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+        /* ट्रेडिंग डेटा टेबल */
+        .trade-table { width: 100%; border-collapse: collapse; margin-top: 40px; background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
+        .trade-table th, .trade-table td { padding: 15px; text-align: left; border-bottom: 1px solid #eee; }
+        .trade-table th { background: #f9f9f9; color: #666; }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>VG NEXUS AI</h1>
-        <p>Advanced Trading Intelligence</p>
-    </div>
+    <nav class="navbar">
+        <div class="logo">VG NEXUS AI</div>
+        <div style="font-weight: bold; color: var(--secondary);">● SYSTEM ONLINE</div>
+    </nav>
 
-    <div class="balance-card">
-        <p>Total Portfolio Balance</p>
-        <div class="amount">$24,849.20</div>
-        <p style="color: #28a745;">+ 12.5% Today</p>
-    </div>
+    <div class="container">
+        <div class="dashboard-card">
+            <div class="stat-item">
+                <h3>Total Equity (USD)</h3>
+                <p>$1,248,590.42</p>
+                <span style="color: var(--secondary);">↑ +4.2% (24h)</span>
+            </div>
+            <div class="stat-item">
+                <h3>Available Margin</h3>
+                <p>$450,000.00</p>
+            </div>
+            <div class="stat-item">
+                <h3>Active Trades</h3>
+                <p>14 Active</p>
+            </div>
+        </div>
 
-    <img src="https://raw.githubusercontent.com/bholarathaur8795-blip/VG-nexus-Ai/main/1772394873517.png" class="main-img">
+        <div class="hero-image-container">
+            <img src="https://raw.githubusercontent.com/bholarathaur8795-blip/VG-nexus-Ai/main/1772394873517.png" class="hero-image" alt="AI Neural Core">
+        </div>
 
-    <div class="btn-container">
-        <button class="pay-btn btn-paypal">Pay with PayPal</button>
-        <button class="pay-btn btn-card">Credit / Debit Card</button>
-        <button class="pay-btn btn-crypto">Pay with Crypto (BTC/ETH)</button>
-        <button class="pay-btn btn-gpay">Google Pay</button>
-        <button class="pay-btn" style="background:#28a745; color:white;">Add Funds via Bank</button>
-    </div>
+        <h2 style="text-align: center;">Financial Operations</h2>
+        <div class="action-grid">
+            <button class="action-btn btn-pay" onclick="alert('Redirecting to Secure Payment Gateway...')">💳 Add Funds (USD)</button>
+            <button class="action-btn btn-withdraw" onclick="alert('Withdrawal Request Sent to Bank.')">🏦 Bank Transfer</button>
+            <button class="action-btn btn-crypto" onclick="alert('Generating BTC/ETH Wallet Address...')">₿ Crypto Deposit</button>
+            <button class="action-btn btn-support" onclick="alert('Connecting to Live AI Support...')">🎧 24/7 Support</button>
+        </div>
 
-    <div class="footer">
-        © 2026 VG NEXUS AI - All Rights Reserved. Secure SSL Encrypted.
+        <table class="trade-table">
+            <thead>
+                <tr>
+                    <th>Asset</th>
+                    <th>Price</th>
+                    <th>Change</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>BTC/USDT</b></td>
+                    <td>$64,231.00</td>
+                    <td style="color: var(--secondary);">+1.2%</td>
+                    <td><button style="color:var(--primary); background:none; border:none; cursor:pointer;">Trade</button></td>
+                </tr>
+                <tr>
+                    <td><b>ETH/USDT</b></td>
+                    <td>$3,450.12</td>
+                    <td style="color: #dc3545;">-0.5%</td>
+                    <td><button style="color:var(--primary); background:none; border:none; cursor:pointer;">Trade</button></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
 </body>
