@@ -3,144 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VG NEXUS AI | Neural Interface v3.0</title>
+    <title>VG NEXUS AI | Payment Dashboard</title>
     <style>
-        /* -------------------------------------------
-           THE GREAT CSS ARCHITECTURE
-           ------------------------------------------- */
-        :root {
-            --neon-cyan: #00ffff;
-            --neon-purple: #bc00ff;
-            --deep-black: #000000;
-            --glow-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
-        }
-
-        body, html {
-            margin: 0; padding: 0;
-            width: 100%; height: 100%;
-            background-color: var(--deep-black);
-            font-family: 'Orbitron', sans-serif;
-            overflow-x: hidden;
-            color: white;
-        }
-
-        /* MATRIX BACKGROUND EFFECT */
-        #matrix-canvas {
-            position: fixed; top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: 0; opacity: 0.15;
-        }
-
-        /* MAIN IMAGE LAYER (Your Trading Brain) */
-        .master-bg {
-            position: fixed; top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: url('https://raw.githubusercontent.com/bholarathaur8795-blip/VG-nexus-Ai/main/1772394873517.png') no-repeat center center;
-            background-size: cover;
-            z-index: 1;
-            filter: brightness(1.1) contrast(1.1);
-            animation: pulseBg 8s infinite alternate;
-        }
-
-        /* NEON BORDER INTERFACE */
-        .interface-frame {
-            position: fixed; top: 0; left: 0;
-            width: 100%; height: 100%;
-            border: 2px solid var(--neon-cyan);
-            box-shadow: inset 0 0 50px rgba(0, 255, 255, 0.3);
-            z-index: 5; pointer-events: none;
-            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 95%, 5% 95%, 5% 5%, 0% 5%);
-        }
-
-        /* UI ELEMENTS */
-        .ui-container {
-            position: relative; z-index: 10;
-            height: 100vh; display: flex;
-            flex-direction: column; justify-content: space-between;
-            padding: 40px; text-align: center;
-        }
-
-        h1 {
-            font-size: clamp(2rem, 8vw, 5rem);
-            letter-spacing: 15px; text-transform: uppercase;
-            text-shadow: 0 0 30px var(--neon-cyan);
-            animation: flicker 3s infinite;
-        }
-
-        .status-bar {
-            background: rgba(0, 255, 255, 0.1);
-            padding: 10px; border-left: 5px solid var(--neon-cyan);
-            font-family: monospace; font-size: 0.8rem;
-            display: inline-block; margin: 20px auto;
-        }
-
-        .cta-button {
-            padding: 20px 60px;
-            background: transparent;
-            border: 2px solid var(--neon-purple);
-            color: var(--neon-purple);
-            font-weight: bold; font-size: 1.2rem;
-            text-transform: uppercase; cursor: pointer;
-            transition: 0.5s; position: relative;
-            overflow: hidden; margin-bottom: 50px;
-        }
-
-        .cta-button:hover {
-            background: var(--neon-purple);
-            color: black;
-            box-shadow: 0 0 80px var(--neon-purple);
-        }
-
-        /* ANIMATIONS */
-        @keyframes pulseBg {
-            from { transform: scale(1); }
-            to { transform: scale(1.05); }
-        }
-        @keyframes flicker {
-            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
-            20%, 24%, 55% { opacity: 0; }
-        }
+        body { font-family: 'Segoe UI', sans-serif; background: #ffffff; margin: 0; color: #333; text-align: center; }
+        .header { padding: 30px; border-bottom: 2px solid #f0f0f0; background: #fafafa; }
+        h1 { color: #007bff; letter-spacing: 3px; margin: 0; font-size: 32px; }
+        
+        /* बैलेंस सेक्शन */
+        .balance-card { background: #f8f9fa; margin: 20px auto; padding: 20px; width: 80%; border-radius: 15px; border: 1px solid #eee; }
+        .amount { font-size: 40px; font-weight: bold; color: #28a745; }
+        
+        /* आपकी फोटो */
+        .main-img { width: 90%; max-width: 600px; border-radius: 15px; margin: 20px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        
+        /* बटन सेक्शन */
+        .btn-container { display: flex; flex-direction: column; gap: 15px; padding: 20px; align-items: center; }
+        .pay-btn { width: 85%; padding: 15px; border-radius: 10px; border: none; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        
+        .btn-paypal { background: #ffc439; color: #003087; }
+        .btn-card { background: #007bff; color: white; }
+        .btn-crypto { background: #333; color: gold; }
+        .btn-gpay { background: #ffffff; border: 1px solid #ccc; color: #5f6368; }
+        
+        .footer { margin-top: 50px; padding: 20px; font-size: 12px; color: #999; }
     </style>
 </head>
 <body>
 
-    <canvas id="matrix-canvas"></canvas>
-    <div class="master-bg"></div>
-    <div class="interface-frame"></div>
-
-    <div class="ui-container">
-        <div>
-            <h1>VG NEXUS AI</h1>
-            <div class="status-bar">> SYSTEM STATUS: NEURAL CORE ONLINE</div>
-        </div>
-
-        <button class="cta-button">Initialize Protocol</button>
+    <div class="header">
+        <h1>VG NEXUS AI</h1>
+        <p>Advanced Trading Intelligence</p>
     </div>
 
-    <script>
-        // THE MATRIX ENGINE
-        const canvas = document.getElementById('matrix-canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        const letters = "010101VG-NEXUS-AI010101";
-        const fontSize = 16;
-        const columns = canvas.width / fontSize;
-        const drops = Array(Math.floor(columns)).fill(1);
+    <div class="balance-card">
+        <p>Total Portfolio Balance</p>
+        <div class="amount">$24,849.20</div>
+        <p style="color: #28a745;">+ 12.5% Today</p>
+    </div>
 
-        function drawMatrix() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#00ffff';
-            ctx.font = fontSize + 'px monospace';
-            for (let i = 0; i < drops.length; i++) {
-                const text = letters.charAt(Math.floor(Math.random() * letters.length));
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-                drops[i]++;
-            }
-        }
-        setInterval(drawMatrix, 50);
-    </script>
+    <img src="https://raw.githubusercontent.com/bholarathaur8795-blip/VG-nexus-Ai/main/1772394873517.png" class="main-img">
+
+    <div class="btn-container">
+        <button class="pay-btn btn-paypal">Pay with PayPal</button>
+        <button class="pay-btn btn-card">Credit / Debit Card</button>
+        <button class="pay-btn btn-crypto">Pay with Crypto (BTC/ETH)</button>
+        <button class="pay-btn btn-gpay">Google Pay</button>
+        <button class="pay-btn" style="background:#28a745; color:white;">Add Funds via Bank</button>
+    </div>
+
+    <div class="footer">
+        © 2026 VG NEXUS AI - All Rights Reserved. Secure SSL Encrypted.
+    </div>
+
 </body>
 </html>
